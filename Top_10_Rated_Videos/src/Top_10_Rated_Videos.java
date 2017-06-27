@@ -22,7 +22,7 @@ public class Top_10_Rated_Videos extends Configured implements Tool{
 
 		if(arr.length<2)
 		{
-			System.out.println("Plz give appropriate directories");
+			System.out.println("Please give appropriate directories");
 			return -1;
 	
 			

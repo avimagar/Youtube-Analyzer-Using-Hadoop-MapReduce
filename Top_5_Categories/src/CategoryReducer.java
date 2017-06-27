@@ -9,21 +9,20 @@ import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 
 
-public class CategoryReducer extends MapReduceBase implements Reducer
-<Text,IntWritable,Text,IntWritable> 
+public class CategoryReducer extends MapReduceBase implements Reducer<Text,IntWritable,Text,IntWritable> 
 {
 
-	public void reduce(Text key, Iterator<IntWritable> values,
-			OutputCollector<Text, IntWritable> output, Reporter arg3)
-			throws IOException {
+	public void reduce(Text inputkey, Iterator<IntWritable> inputvalues,OutputCollector<Text, IntWritable> output, Reporter reporter)throws IOException 
+	{
 		int sum = 0;
-        while(values.hasNext()) {
+        	while(inputvalues.hasNext()) 
+		{
         	
-        	IntWritable i=values.next();
-            sum += i.get();
+	        	IntWritable i=inputvalues.next();
+		        sum += i.get();
             
-        }
-		output.collect(key,new IntWritable(sum));
+        	}
+		output.collect(inputkey,new IntWritable(sum));
 
 	}
 

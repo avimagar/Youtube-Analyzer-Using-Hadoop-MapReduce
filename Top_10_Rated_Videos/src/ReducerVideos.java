@@ -13,22 +13,21 @@ import org.apache.hadoop.mapred.Reporter;
 
 
 
+public class ReducerVideos extends MapReduceBase implements Reducer<Text,FloatWritable,Text,FloatWritable>
+{
 
-public class ReducerVideos extends MapReduceBase implements Reducer
-<Text,FloatWritable,Text,FloatWritable>{
-
-	public void reduce(Text key, Iterator<FloatWritable> values,
-			OutputCollector<Text, FloatWritable> output, Reporter report)
-			throws IOException {
+	public void reduce(Text inputkey, Iterator<FloatWritable> inputvalues,OutputCollector<Text, FloatWritable> output, Reporter report)
+			throws IOException 
+	{
 	
-		 float sum=0;
-		 while(values.hasNext())
-		 {
-			 FloatWritable tmp=values.next();
-			 sum+=tmp.get();
+		float sum=0;
+		while(inputvalues.hasNext())
+		{
+			FloatWritable tmp=inputvalues.next();
+			sum+=tmp.get();
 			 
-		 }
-		 output.collect(key,new FloatWritable(sum));
+		}
+		output.collect(inputkey,new FloatWritable(sum));
 	}
 
 }

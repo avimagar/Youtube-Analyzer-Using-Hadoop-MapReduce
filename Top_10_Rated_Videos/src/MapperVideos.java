@@ -11,29 +11,29 @@ import org.apache.hadoop.mapred.Reporter;
 
 
 
-public class MapperVideos extends MapReduceBase implements Mapper
-<LongWritable,Text,Text,FloatWritable>{
+public class MapperVideos extends MapReduceBase implements Mapper<LongWritable,Text,Text,FloatWritable>
+{
 
+	public void map(LongWritable inputkey, Text inputvalue, OutputCollector<Text, FloatWritable> output,
+			Reporter reporter) throws IOException 
+		{
+			Text videoname=new Text();
+			FloatWritable rating=new FloatWritable();
 	
-
-	public void map(LongWritable key, Text value, OutputCollector<Text, FloatWritable> output,
-			Reporter arg3) throws IOException {
-		Text video_name=new Text();
-		FloatWritable rating=new FloatWritable();
-	
-		  String line = value.toString();
-		  String str[]=line.split("\t");
+			String line = inputvalue.toString();
+			String tempstr[]=line.split("\t");
 	    
-		  if(str.length>6) 
-		  {  
-			  video_name.set(str[0]);
-		      if(str[6].matches("\\d+.+"))
-		      { 
-		    	  float f=Float.parseFloat(str[6]); 
-		          rating.set(f);
+			if(tempstr.length>6) 
+			{  
+				videoname.set(tempstr[0]);
+				if(tempstr[6].matches("\\d+.\\d+"))
+				{ 
+					float f=Float.parseFloat(tempstr[6]); 
+					rating.set(f);
 	
-		      }
-		  }
-		  output.collect(video_name,rating);
+				}
+			}
+		  
+		 output.collect(videoname,rating);
 	}
 }

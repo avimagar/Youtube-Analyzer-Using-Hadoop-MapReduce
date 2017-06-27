@@ -19,19 +19,21 @@ public class CategoryMapper extends MapReduceBase implements Mapper
 	IntWritable one = new IntWritable(1);
 	
 	
-	public void map(LongWritable arg0, Text value,OutputCollector<Text, IntWritable> output,
-			Reporter report) throws IOException {
+	public void map(LongWritable inputkey, Text inputvalue,OutputCollector<Text, IntWritable> output,
+			Reporter reporter) throws IOException 
+	{
 	
-		String line = value.toString();
-        String str[]=line.split("\t");
+		String line = inputvalue.toString();
+        	String tempstr[]=line.split("\t");
 
-       if(str.length > 5){
-    	   category.set(str[3]);
-      		   
-       }
+       		if(tempstr.length > 5)
+		{
+    	   		category.set(tempstr[3]);
+    
+       		}
 
-       output.collect(category, one);
+       		output.collect(category, one);
     	
-	}
+       }
 	
 }
