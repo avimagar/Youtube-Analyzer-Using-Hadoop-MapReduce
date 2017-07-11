@@ -25,7 +25,9 @@ public class Views_Reducer extends Reducer <Text,LongWritable,Text,LongWritable>
 		Long totalViews=(long) 0;
 		for(LongWritable value:values )
 		{
-			totalViews+=value.get();
+			long temp=value.get();
+			if(totalViews < temp)
+				totalViews=temp;
 			
 		}
 		finalOutput.put(totalViews,inputKey.toString());
