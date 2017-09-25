@@ -1,7 +1,8 @@
 # Youtube-Analyzer-Using-Hadoop-MapReduce
 Project on analyzing youtube dataset with the help of hadoop mapreduce framework.
 
-----------------------------------------------------------Dataset Description -----------------------------------------------------------------
+Dataset Description  
+
 
 | Video ID | Uploader | Age (In days) | Category | length | Views | Rate | Ratings | Comments | Related ID's |
 | -------- | -------------------- | ------------- | -------- | ------ | ----- | ---- | ------- | -------- | ------------ |
